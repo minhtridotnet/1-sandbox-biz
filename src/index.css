@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-sandbox-navy text-sandbox-softText font-sans antialiased;
+    min-height: 100vh;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-sandbox-text font-bold tracking-tight;
+  }
+  ::selection {
+    @apply bg-sandbox-cyan/30 text-sandbox-text;
+  }
+  /* Dark scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #020817;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(20, 99, 255, 0.35);
+    border-radius: 9999px;
+    border: 2px solid #020817;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 217, 255, 0.5);
+  }
+}
+
+@layer components {
+  .card-premium {
+    @apply rounded-2xl border border-cyanish bg-card-premium shadow-card;
+  }
+  .card-elevated {
+    @apply rounded-2xl border border-cyanish bg-sandbox-elevated;
+  }
+  .card-base {
+    @apply rounded-2xl border border-divider bg-sandbox-card;
+  }
+  .glass {
+    @apply rounded-2xl border border-cyanish bg-white/5 backdrop-blur-md;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-cta-gold px-5 py-3 text-sm font-semibold text-[#06111F] shadow-glow-gold transition hover:brightness-110 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-ai {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-cta-ai px-5 py-3 text-sm font-semibold text-white shadow-glow-cyan transition hover:brightness-110 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-cyanish px-5 py-3 text-sm font-semibold text-sandbox-softText transition hover:border-sandbox-cyan hover:text-sandbox-cyan active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-sandbox-elevated px-5 py-3 text-sm font-semibold text-sandbox-text transition hover:brightness-125 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .chip {
+    @apply cursor-pointer select-none rounded-full border border-cyanish px-4 py-2 text-sm text-sandbox-softText transition hover:border-sandbox-cyan hover:text-sandbox-cyan;
+  }
+  .chip-active {
+    @apply border-sandbox-cyan bg-sandbox-cyan/10 text-sandbox-cyan shadow-glow-cyan-soft;
+  }
+  .input-field {
+    @apply w-full rounded-xl border border-divider bg-sandbox-navy/60 px-4 py-3 text-sandbox-text outline-none transition placeholder:text-sandbox-muted focus:border-sandbox-cyan focus:ring-2 focus:ring-sandbox-cyan/20;
+  }
+  .section-title {
+    @apply text-lg font-bold text-sandbox-text;
+  }
+  .section-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-sandbox-cyan;
+  }
+}
+
+@layer utilities {
+  .bg-dotted-grid {
+    background-image: radial-gradient(rgba(0, 217, 255, 0.12) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .text-gradient-gold {
+    @apply bg-cta-gold bg-clip-text text-transparent;
+  }
+  .text-gradient-cyan {
+    @apply bg-cta-ai bg-clip-text text-transparent;
+  }
+  .glow-gold {
+    @apply shadow-glow-gold;
+  }
+  .glow-cyan {
+    @apply shadow-glow-cyan;
+  }
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+/* Printable report view — hides app chrome and renders the dashboard on paper */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  html,
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+  /* Hide everything not marked printable */
+  body * {
+    visibility: hidden;
+  }
+  .printable,
+  .printable * {
+    visibility: visible;
+  }
+  .printable {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: #0f172a;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .printable h1,
+  .printable h2,
+  .printable h3 {
+    color: #0f172a !important;
+  }
+  .printable p,
+  .printable li,
+  .printable span,
+  .printable td,
+  .printable th {
+    color: #1f2937 !important;
+  }
+  /* Flatten dark cards onto light surfaces for ink */
+  .printable .card-premium,
+  .printable .card-elevated,
+  .printable .card-base {
+    background: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: none !important;
+  }
+  .printable table {
+    border-collapse: collapse;
+  }
+  .printable .print-break {
+    break-inside: avoid;
+  }
+}
